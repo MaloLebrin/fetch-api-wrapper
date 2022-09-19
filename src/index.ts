@@ -6,8 +6,7 @@ const api = new FetchWrapper({
 })
 
 const test = async () => {
-  const res = await api.get('Characters')
-  // console.log(res, '<==== res')
+  await api.get('Characters')
 }
 
 test()
