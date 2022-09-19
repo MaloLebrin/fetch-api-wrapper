@@ -3,7 +3,7 @@ import fetch, { Request } from 'node-fetch'
 import type { ApiMethods, FetchWrapperInit, WithoutId } from './type'
 import { FetchMethods } from './type'
 
-export class FetchWrapper implements ApiMethods {
+export default class FetchWrapper implements ApiMethods {
   private baseUrl: string
   private headers?: Headers
   private redirect?: RequestRedirect = 'follow'
@@ -21,22 +21,12 @@ export class FetchWrapper implements ApiMethods {
       ...config,
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.token}`,
+        'Content-type': 'application/json; charset=UTF-8',
+        'Authorization': `Bearer ${this.token ? this.token : ''}`,
         ...config.headers,
       },
+      body: config.body ? JSON.stringify(config.body) : null,
     })
-    // const request = new Request(url, {
-    //   method: 'post',
-    //   body: JSON.stringify({
-    //     title: 'my post',
-    //     body: 'some content',
-    //     userId: 1,
-    //   }),
-    //   headers: {
-    //     'Content-type': 'application/json; charset=UTF-8',
-    //   },
-    // })
     const response = await fetch(request)
     return await response.json() as unknown as T
   }
@@ -61,7 +51,14 @@ export class FetchWrapper implements ApiMethods {
 
   async patch<T>(path: string, data: Partial<T>): Promise<T> {
     return this.http<T>(this.getPath(path), {
-      method: FetchMethods.POST,
+      method: FetchMethods.PATCH,
+      body: data,
+    })
+  }
+
+  async put<T>(path: string, data: Partial<T>): Promise<T> {
+    return this.http<T>(this.getPath(path), {
+      method: FetchMethods.PUT,
       body: data,
     })
   }

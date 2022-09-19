@@ -1,12 +1,15 @@
-import { FetchWrapper } from './fetchWrapper'
-import { baseAPIUrl } from './utils'
+import FetchWrapper from './fetchWrapper'
+import type { ApiMethods, FetchMethods, FetchWrapperInit, HeadersInterface, State, WithoutId } from './type'
 
-const api = new FetchWrapper({
-  baseUrl: baseAPIUrl,
-})
-
-const test = async () => {
-  await api.get('Characters')
+export type {
+  State,
+  ApiMethods,
+  FetchWrapperInit,
+  HeadersInterface,
+  FetchMethods,
+  WithoutId,
 }
 
-test()
+export {
+  FetchWrapper,
+}

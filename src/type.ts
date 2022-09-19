@@ -5,24 +5,11 @@ export interface State {
   isSuccess: boolean | null
 }
 
-export interface RequestBody {
-  userId: Id
-  title: string
-  body: string
-}
-
-export type ResponseBody = RequestBody & {
-  id: Id
-}
-
-export type Id = string | number
-
 export interface ApiMethods {
-  // setToken: (token: string) => void
-  // getToken: () => string | null
   get: <T>(path: string) => Promise<T>
   post: <T extends WithoutId<T>>(path: string, data?: T) => Promise<T>
   patch: <T>(path: string, data: Partial<T>) => Promise<T>
+  put: <T>(path: string, data: Partial<T>) => Promise<T>
   delete: <T>(path: string, data?: T) => Promise<any>
 }
 
@@ -44,4 +31,3 @@ export enum FetchMethods {
 }
 
 export type WithoutId<T> = Omit<T, 'id'>
-
