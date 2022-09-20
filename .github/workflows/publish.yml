@@ -24,6 +24,9 @@ jobs:
       - name: ⚙️ Setup
         run: npm i -g @antfu/ni
 
+      - name: Install
+        run: nci
+
       - name: 🚀 publish
         run: npm publish --access public
         env:
