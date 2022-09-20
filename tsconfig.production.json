@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "es2018",
     "module": "esnext",
+    "declaration": true,
     "lib": ["esnext"],
     "moduleResolution": "node",
     "esModuleInterop": true,
@@ -11,6 +12,7 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "noImplicitAny": true,
+    "preserveConstEnums": true,
     "outDir": "./dist",
     "baseUrl": ".",
     "paths": {
@@ -20,6 +22,7 @@
     },
   },
   "exclude": [
+    "node_modules",
     "test/**/*.test.ts",
     "vitest.config.ts",
     "docs/**",

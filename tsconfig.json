@@ -11,5 +11,12 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "noImplicitAny": true,
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "test/**/*.test.ts",
+    "vitest.config.ts",
+    "docs/**",
+    "src/main.ts"
+  ]
 }
