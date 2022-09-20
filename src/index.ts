@@ -1,13 +1,14 @@
+import type { UseFetchWrapper } from './fetchWrapper'
 import FetchWrapper from './fetchWrapper'
-import type { ApiMethods, FetchMethods, FetchWrapperInit, HeadersInterface, State, WithoutId } from './type'
+import type { FetchMethods, FetchWrapperInit, HeadersInterface, State, WithoutId } from './type'
 
 export type {
   State,
-  ApiMethods,
   FetchWrapperInit,
   HeadersInterface,
   FetchMethods,
   WithoutId,
+  UseFetchWrapper,
 }
 
 export {
