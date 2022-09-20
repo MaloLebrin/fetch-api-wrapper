@@ -11,5 +11,18 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "noImplicitAny": true,
-  }
+    "outDir": "./dist",
+    "baseUrl": ".",
+    "paths": {
+      "~/*": [
+        "./src*"
+      ]
+    },
+  },
+  "exclude": [
+    "test/**/*.test.ts",
+    "vitest.config.ts",
+    "docs/**",
+    "src/main.ts"
+  ]
 }
