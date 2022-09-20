@@ -10,7 +10,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "noImplicitAny": true,
+    "noImplicitAny": true
   },
   "exclude": [
     "node_modules",
