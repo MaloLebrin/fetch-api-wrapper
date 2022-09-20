@@ -1,7 +1,7 @@
 {
   "name": "fetch-api-wrapper",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": false,
   "packageManager": "pnpm@7.9.0",
   "description": "use fetch to simplify the code for making HTTP requests taking full advantage of TypeScript's type system",
