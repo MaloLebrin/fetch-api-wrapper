@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "es2018",
     "module": "esnext",
+    "declaration": true,
     "lib": ["esnext"],
     "moduleResolution": "node",
     "esModuleInterop": true,
@@ -10,7 +11,15 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "noImplicitAny": true
+    "noImplicitAny": true,
+    "preserveConstEnums": true,
+    "outDir": "./dist",
+    "baseUrl": ".",
+    "paths": {
+      "~/*": [
+        "./src*"
+      ]
+    }
   },
   "exclude": [
     "node_modules",

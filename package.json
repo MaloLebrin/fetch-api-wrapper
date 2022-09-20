@@ -2,6 +2,7 @@
   "name": "fetch-api-wrapper",
   "type": "module",
   "version": "0.0.1",
+  "private": false,
   "packageManager": "pnpm@7.9.0",
   "description": "",
   "author": "Malo Lebrin <malolebrin@gmail.com>",
@@ -17,34 +18,34 @@
   "sideEffects": false,
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs"
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js"
     }
   },
-  "main": "./dist/index.mjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "typesVersions": {
     "*": {
       "*": [
         "./dist/*",
-        "./dist/index.d.ts"
+        "./dist/src/index.d.ts"
       ]
     }
   },
   "files": [
-    "dist"
+    "dist/**/*"
   ],
   "scripts": {
-    "build": "unbuild",
-    "dev": "unbuild --stub",
+    "build": "tsc --project tsconfig.production.json",
     "lint": "eslint .",
     "prepublishOnly": "nr build",
     "release": "bumpp && npm publish",
     "start": "esno src/main.ts",
     "test": "vitest",
     "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "vue": "^3.2.39"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.26.1",
@@ -58,7 +59,6 @@
     "pnpm": "^7.9.0",
     "rimraf": "^3.0.2",
     "typescript": "^4.7.4",
-    "unbuild": "^0.8.8",
     "vite": "^3.0.7",
     "vitest": "^0.22.0"
   }
