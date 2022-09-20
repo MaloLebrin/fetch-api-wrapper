@@ -2,7 +2,8 @@ name: 🚀 Publish
 
 on:
   release:
-    types: [published]
+    types: [created]
+    # types: [published]
 
 jobs:
   release:
