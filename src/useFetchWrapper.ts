@@ -1,6 +1,6 @@
 import type { RequestInit } from 'node-fetch'
 import fetch, { Request } from 'node-fetch'
-import { toRef } from 'vue'
+import { ref } from 'vue'
 import type { FetchWrapperInit, State, WithoutId } from './type'
 import { FetchMethods } from './type'
 
@@ -8,11 +8,26 @@ export default function useFetchWrapper(init: FetchWrapperInit) {
   const state: State = {
     isSubmitting: false,
     isSuccess: null,
+    isRedirected: null,
     baseUrl: init.baseUrl,
     token: init.token,
     headers: init.headers,
     redirect: init.redirect,
     data: null,
+  }
+
+  const isSubmitting = ref(false)
+  const isSuccess = ref(false)
+  const submissionErrors = ref<string[]>([])
+
+  function resetErrors() {
+    submissionErrors.value = []
+  }
+
+  function resetState() {
+    resetErrors()
+    isSuccess.value = false
+    isSubmitting.value = false
   }
 
   async function http<T>(url: string, config: RequestInit): Promise<T> {
@@ -27,8 +42,16 @@ export default function useFetchWrapper(init: FetchWrapperInit) {
       },
       body: config.body ? JSON.stringify(config.body) : null,
     })
+
     const response = await fetch(request)
-    const data = await response.json() as unknown as T
+    isSuccess.value = response.ok
+
+    if (!response.ok) {
+      submissionErrors.value.push(response.statusText)
+      throw new Error(response.statusText)
+    }
+
+    const data = await response.json().catch(() => ({})) as unknown as T
     toggleIsSubmitting(false)
     return data
   }
@@ -39,9 +62,9 @@ export default function useFetchWrapper(init: FetchWrapperInit) {
 
   function toggleIsSubmitting(value?: boolean) {
     if (value === null || value === undefined)
-      state.isSubmitting = !state.isSubmitting
+      isSubmitting.value = !isSubmitting.value
     else
-      state.isSubmitting = value
+      isSubmitting.value = value
   }
 
   async function getApi<T>(path: string): Promise<T> {
@@ -51,11 +74,10 @@ export default function useFetchWrapper(init: FetchWrapperInit) {
   }
 
   async function postApi<T extends WithoutId<T>>(path: string, data?: T): Promise<T> {
-    const a = http<T>(getPath(path), {
+    return http<T>(getPath(path), {
       method: FetchMethods.POST,
       body: data,
     })
-    return a
   }
 
   async function patchApi<T>(path: string, data: Partial<T>): Promise<T> {
@@ -79,14 +101,16 @@ export default function useFetchWrapper(init: FetchWrapperInit) {
   }
 
   return {
+    resetState,
     getApi,
     postApi,
     patchApi,
     putApi,
     deleteApi,
     setIsSubmitting: toggleIsSubmitting,
-    isSubmitting: toRef(state, 'isSubmitting'),
-    isSuccess: toRef(state, 'isSuccess'),
+    isSubmitting,
+    isSuccess,
+    submissionErrors,
   }
 }
 

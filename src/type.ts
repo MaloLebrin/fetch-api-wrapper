@@ -3,6 +3,7 @@ import type { Headers, RequestRedirect } from 'node-fetch'
 export interface State {
   isSubmitting: boolean
   isSuccess: boolean | null
+  isRedirected: boolean | null
   baseUrl: string
   token: string | undefined
   headers?: HeadersInterface

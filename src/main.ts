@@ -1,15 +1,26 @@
-import useFetchWrapper from './fetchWrapper'
+import useFetchWrapper from './useFetchWrapper'
+import useSubmission from './useSubmission'
 
-// const api = new FetchWrapper({
-//   baseUrl: 'http://localhost:8000',
-// })
-
-const { isSubmitting, isSuccess, getApi } = useFetchWrapper({
+const { postApi } = useFetchWrapper({
   baseUrl: 'http://localhost:8000',
 })
 
 const test = async () => {
-  await getApi('user')
+  await postApi('user/login', {
+    email: process.env.email,
+    password: process.env.password,
+  })
 }
 
-test()
+const {
+  onSubmit,
+  isSuccess,
+} = useSubmission(test)
+
+const action = async () => {
+  await onSubmit()
+  console.warn(isSuccess.value, '<==== isSuccess.value')
+}
+
+action()
+
