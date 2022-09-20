@@ -7,6 +7,7 @@ export interface State {
   token: string | undefined
   headers?: HeadersInterface
   redirect?: RequestRedirect
+  data: null | any
 }
 
 // export interface ApiMethods {

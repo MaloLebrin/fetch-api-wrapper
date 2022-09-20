@@ -1,5 +1,6 @@
 import type { RequestInit } from 'node-fetch'
 import fetch, { Request } from 'node-fetch'
+import { toRef } from 'vue'
 import type { FetchWrapperInit, State, WithoutId } from './type'
 import { FetchMethods } from './type'
 
@@ -11,9 +12,11 @@ export default function useFetchWrapper(init: FetchWrapperInit) {
     token: init.token,
     headers: init.headers,
     redirect: init.redirect,
+    data: null,
   }
 
   async function http<T>(url: string, config: RequestInit): Promise<T> {
+    toggleIsSubmitting(true)
     const request = new Request(url, {
       ...config,
       headers: {
@@ -25,11 +28,20 @@ export default function useFetchWrapper(init: FetchWrapperInit) {
       body: config.body ? JSON.stringify(config.body) : null,
     })
     const response = await fetch(request)
-    return await response.json() as unknown as T
+    const data = await response.json() as unknown as T
+    toggleIsSubmitting(false)
+    return data
   }
 
   function getPath(path: string): string {
     return `${state.baseUrl}/${path}`
+  }
+
+  function toggleIsSubmitting(value?: boolean) {
+    if (value === null || value === undefined)
+      state.isSubmitting = !state.isSubmitting
+    else
+      state.isSubmitting = value
   }
 
   async function getApi<T>(path: string): Promise<T> {
@@ -72,8 +84,9 @@ export default function useFetchWrapper(init: FetchWrapperInit) {
     patchApi,
     putApi,
     deleteApi,
-    isSubmitting: state.isSubmitting,
-    isSuccess: state.isSuccess,
+    setIsSubmitting: toggleIsSubmitting,
+    isSubmitting: toRef(state, 'isSubmitting'),
+    isSuccess: toRef(state, 'isSuccess'),
   }
 }
 
