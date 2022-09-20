@@ -3,7 +3,6 @@ name: 🚀 Publish
 on:
   release:
     types: [created]
-    # types: [published]
 
 jobs:
   release:
@@ -13,7 +12,7 @@ jobs:
       - name: 📚 checkout
         uses: actions/checkout@v2.1.1
       - name: 🟢 node
-        uses: actions/setup-node@v1.4.2
+        uses: actions/setup-node@v3
         with:
           node-version: 16.x
           registry-url: https://registry.npmjs.org
