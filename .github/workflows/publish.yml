@@ -11,13 +11,19 @@ jobs:
     steps:
       - name: 📚 checkout
         uses: actions/checkout@v2.1.1
+
+      - name: 🟢 Install pnpm
+        uses: pnpm/action-setup@v2
+
       - name: 🟢 node
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
           registry-url: https://registry.npmjs.org
+
       - name: ⚙️ Setup
         run: npm i -g @antfu/ni
+
       - name: 🚀 publish
         run: npm publish --access public
         env:
