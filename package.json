@@ -14,7 +14,12 @@
     "url": "git+https://github.com/MaloLebrin/fetch-api-wrapper.git"
   },
   "bugs": "https://github.com/MaloLebrin/fetch-api-wrapper/issues",
-  "keywords": [],
+  "keywords": [
+    "fetch",
+    "data",
+    "rest",
+    "api"
+  ],
   "sideEffects": false,
   "exports": {
     ".": {
