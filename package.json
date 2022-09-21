@@ -3,9 +3,16 @@
   "type": "module",
   "version": "0.0.9",
   "private": false,
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.pkg.github.com/@malolebrin"
+  },
   "packageManager": "pnpm@7.9.0",
   "description": "use fetch to simplify the code for making HTTP requests taking full advantage of TypeScript's type system",
-  "author": "Malo Lebrin <malolebrin@gmail.com>",
+  "author": {
+    "name": "Malo Lebrin",
+    "email": "malolebrin@gmail.com"
+  },
   "license": "MIT",
   "funding": "https://github.com/sponsors/antfu",
   "homepage": "https://github.com/MaloLebrin/fetch-api-wrapper#readme",
