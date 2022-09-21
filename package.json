@@ -1,7 +1,7 @@
 {
   "name": "@malolebrin/fetch-api-wrapper",
   "type": "module",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -27,16 +27,8 @@
     "api"
   ],
   "sideEffects": false,
-  "main": "dist/src/index.js",
-  "types": "dist/src/index.d.ts",
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./dist/*",
-        "./dist/src/index.d.ts"
-      ]
-    }
-  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist/**/*"
   ],
