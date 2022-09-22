@@ -11,14 +11,6 @@ export interface State {
   data: null | any
 }
 
-// export interface ApiMethods {
-//   get: <T>(path: string) => Promise<T>
-//   post: <T extends WithoutId<T>>(path: string, data?: T) => Promise<T>
-//   patch: <T>(path: string, data: Partial<T>) => Promise<T>
-//   put: <T>(path: string, data: Partial<T>) => Promise<T>
-//   delete: <T>(path: string, data?: T) => Promise<any>
-// }
-
 export interface FetchWrapperInit {
   baseUrl: string
   headers?: HeadersInterface
@@ -37,3 +29,11 @@ export enum FetchMethods {
 }
 
 export type WithoutId<T> = Omit<T, 'id'>
+
+export interface ApiMethods {
+  get: <T>(path: string) => Promise<T>
+  post: <T extends WithoutId<T>>(path: string, data?: T) => Promise<T>
+  patch: <T>(path: string, data: Partial<T>) => Promise<T>
+  put: <T>(path: string, data: Partial<T>) => Promise<T>
+  delete: <T>(path: string, data?: T) => Promise<any>
+}
