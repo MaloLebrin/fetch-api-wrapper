@@ -5,7 +5,7 @@ importers:
   .:
     specifiers:
       '@antfu/eslint-config': ^0.31.0
-      '@antfu/ni': ^0.17.2
+      '@antfu/ni': ^0.18.0
       '@antfu/utils': ^0.7.0
       '@types/node': ^18.7.5
       bumpp: ^8.2.1
@@ -22,7 +22,7 @@ importers:
       vue: 3.2.39
     devDependencies:
       '@antfu/eslint-config': 0.31.1_4rv7y5c6xz3vfxwhbrcxxi73bq
-      '@antfu/ni': 0.17.2
+      '@antfu/ni': 0.18.8
       '@antfu/utils': 0.7.0
       '@types/node': 18.7.5
       bumpp: 8.2.1
@@ -126,8 +126,8 @@ packages:
       - typescript
     dev: true
 
-  /@antfu/ni/0.17.2:
-    resolution: {integrity: sha512-uYsmcsQzylpMiRB4gJRwcEJMIrKyeHZO0CJct8MmqkT3B7HTFU6oSZhDB50E/XvQw7FW8oT/tKsq3NFplRgG2Q==}
+  /@antfu/ni/0.18.8:
+    resolution: {integrity: sha512-0m++AudwQq+wWAz/Ax7g+sh/wFW51HHQ6BtPLsuTAsFIzWB/bv/0COwZE7BRS+u0nqMb6Ks6nlk6cY1TpPDwHg==}
     hasBin: true
     dev: true
 
