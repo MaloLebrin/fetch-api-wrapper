@@ -6,7 +6,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "packageManager": "pnpm@7.11.0",
+  "packageManager": "pnpm@7.17.1",
   "description": "use fetch to simplify the code for making HTTP requests taking full advantage of TypeScript's type system",
   "author": {
     "name": "Malo Lebrin",
