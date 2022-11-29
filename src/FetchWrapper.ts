@@ -1,6 +1,6 @@
 import type { Headers, RequestInit, RequestRedirect } from 'node-fetch'
 import fetch, { Request } from 'node-fetch'
-import type { ApiMethods, FetchWrapperInit, WithoutId } from './type'
+import type { ApiMethods, FetchWrapperInit, FetchWrapperResponse, WithoutId } from './type'
 import { FetchMethods } from './type'
 
 export default class FetchWrapper implements ApiMethods {
@@ -16,7 +16,7 @@ export default class FetchWrapper implements ApiMethods {
     this.redirect = init.redirect
   }
 
-  private async http<T>(url: string, config: RequestInit): Promise<T> {
+  private async http<T>(url: string, config: RequestInit): Promise<FetchWrapperResponse<T>> {
     const request = new Request(url, {
       ...config,
       headers: {
@@ -28,42 +28,47 @@ export default class FetchWrapper implements ApiMethods {
       body: config.body ? JSON.stringify(config.body) : null,
     })
     const response = await fetch(request)
-    return await response.json() as unknown as T
+
+    return {
+      success: response.ok,
+      status: response.status,
+      statusText: response.statusText,
+      data: config.method === FetchMethods.DELETE ? null : await response.json() as unknown as T,
+    }
   }
 
   private getPath(path: string): string {
     return `${this.baseUrl}/${path}`
   }
 
-  async get<T>(path: string): Promise<T> {
+  async get<T>(path: string): Promise<FetchWrapperResponse<T>> {
     return this.http<T>(this.getPath(path), {
       method: FetchMethods.GET,
     })
   }
 
-  async post<T extends WithoutId<T>>(path: string, data?: T): Promise<T> {
-    const a = this.http<T>(this.getPath(path), {
+  async post<T>(path: string, data?: WithoutId<T>): Promise<FetchWrapperResponse<T>> {
+    return this.http<T>(this.getPath(path), {
       method: FetchMethods.POST,
       body: data,
     })
-    return a
   }
 
-  async patch<T>(path: string, data: Partial<T>): Promise<T> {
+  async patch<T>(path: string, data: Partial<T>): Promise<FetchWrapperResponse<T>> {
     return this.http<T>(this.getPath(path), {
       method: FetchMethods.PATCH,
       body: data,
     })
   }
 
-  async put<T>(path: string, data: Partial<T>): Promise<T> {
+  async put<T>(path: string, data: Partial<T>): Promise<FetchWrapperResponse<T>> {
     return this.http<T>(this.getPath(path), {
       method: FetchMethods.PUT,
       body: data,
     })
   }
 
-  async delete(path: string) {
+  async delete<T>(path: string): Promise<FetchWrapperResponse<T>> {
     return this.http(this.getPath(path), {
       method: FetchMethods.DELETE,
     })
