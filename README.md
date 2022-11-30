@@ -51,7 +51,43 @@ Fetch api wrapper can be used in any javascript or typescript project (vanilla, 
 
 This package was built to use the fetch api in a very simple way with a minimal configuration.
 
-### Create the api instance
+### Class or Hook
+
+The package was built with two possible possibilities for the user.
+You can use FetchApiWrapper class
+```ts
+import { FetchWrapper } from '@malolebrin/fetch-api-wrapper'
+
+const api = new FetchWrapper({
+  baseUrl: '<your url>',
+  token: '<your token>',
+  headers: '<your headers>',
+})
+```
+Or useFetchWrapper hook.
+```ts
+import { useFetchWrapper } from '@malolebrin/fetch-api-wrapper'
+
+const {
+  deleteApi,
+  postApi,
+  patchApi,
+  putApi,
+  getApi,
+  isSuccess,
+  submissionErrors,
+  setIsSubmitting,
+} = useFetchWrapper({
+  baseUrl: '<your url>',
+  token: '<your token>',
+  headers: '<your headers>',
+})
+```
+
+
+It depends on your preference. Look at the documentation to understand how to use these two utilities
+
+## Create the api instance with Class
 
 ```ts
 import { FetchWrapper } from '@malolebrin/fetch-api-wrapper'
@@ -95,6 +131,61 @@ const { data, success, status, statusText } = await api.patch<TSInterface>('<my 
 const { data, success, status, statusText } = await api.delete<TSInterface>('<my path>/:id')
 
 ```
+
+## Create the api instance with Hook
+
+```ts
+import { useFetchWrapper } from '@malolebrin/fetch-api-wrapper'
+
+const {
+  deleteApi,
+  postApi,
+  patchApi,
+  putApi,
+  getApi,
+  isSuccess,
+  submissionErrors,
+  setIsSubmitting,
+} = useFetchWrapper({
+  baseUrl: '<your url>',
+  token: '<your token>',
+  headers: '<your headers>',
+})
+```
+
+You can now use the api constant with headers and tokens directly associated with it. 🚀
+
+### Fetch data
+
+```ts
+const { data, success, status, statusText } = await getApi<TSInterface>('<my path>')
+
+```
+### Post data
+
+```ts
+const { data, success, status, statusText } = await postApi<TSInterface>('<my path>', body)
+
+```
+### Put data
+
+```ts
+const { data, success, status, statusText } = await putApi<TSInterface>('<my path>/:id', body)
+
+```
+### Patch data
+
+```ts
+const { data, success, status, statusText } = await patchApi<TSInterface>('<my path>/:id', body)
+
+```
+### Delete data
+
+```ts
+const { data, success, status, statusText } = await deleteApi<TSInterface>('<my path>/:id')
+
+```
+
 
 ## License
 

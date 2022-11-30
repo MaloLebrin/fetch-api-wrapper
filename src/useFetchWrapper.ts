@@ -1,7 +1,7 @@
 import type { RequestInit } from 'node-fetch'
 import fetch, { Request } from 'node-fetch'
 import { ref } from 'vue'
-import type { FetchWrapperInit, State, WithoutId } from './type'
+import type { FetchWrapperInit, FetchWrapperResponse, State, WithoutId } from './type'
 import { FetchMethods } from './type'
 
 export default function useFetchWrapper(init: FetchWrapperInit) {
@@ -30,7 +30,7 @@ export default function useFetchWrapper(init: FetchWrapperInit) {
     isSubmitting.value = false
   }
 
-  async function http<T>(url: string, config: RequestInit): Promise<T> {
+  async function http<T>(url: string, config: RequestInit): Promise<FetchWrapperResponse<T>> {
     toggleIsSubmitting(true)
     const request = new Request(url, {
       ...config,
@@ -46,14 +46,18 @@ export default function useFetchWrapper(init: FetchWrapperInit) {
     const response = await fetch(request)
     isSuccess.value = response.ok
 
-    if (!response.ok) {
+    if (!response.ok)
       submissionErrors.value.push(response.statusText)
-      throw new Error(response.statusText)
-    }
 
     const data = await response.json().catch(() => ({})) as unknown as T
     toggleIsSubmitting(false)
-    return data
+
+    return {
+      success: response.ok,
+      status: response.status,
+      statusText: response.statusText,
+      data: config.method === FetchMethods.DELETE ? null : data,
+    }
   }
 
   function getPath(path: string): string {
@@ -67,27 +71,27 @@ export default function useFetchWrapper(init: FetchWrapperInit) {
       isSubmitting.value = value
   }
 
-  async function getApi<T>(path: string): Promise<T> {
+  async function getApi<T>(path: string): Promise<FetchWrapperResponse<T>> {
     return http<T>(getPath(path), {
       method: FetchMethods.GET,
     })
   }
 
-  async function postApi<T extends WithoutId<T>>(path: string, data?: T): Promise<T> {
+  async function postApi<T>(path: string, data?: WithoutId<T>): Promise<FetchWrapperResponse<T>> {
     return http<T>(getPath(path), {
       method: FetchMethods.POST,
       body: data,
     })
   }
 
-  async function patchApi<T>(path: string, data: Partial<T>): Promise<T> {
+  async function patchApi<T>(path: string, data: Partial<T>): Promise<FetchWrapperResponse<T>> {
     return http<T>(getPath(path), {
       method: FetchMethods.PATCH,
       body: data,
     })
   }
 
-  async function putApi<T>(path: string, data: Partial<T>): Promise<T> {
+  async function putApi<T>(path: string, data: Partial<T>): Promise<FetchWrapperResponse<T>> {
     return http<T>(getPath(path), {
       method: FetchMethods.PUT,
       body: data,
