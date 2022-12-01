@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref } from '@vue/reactivity'
 
 export default function useSubmission(submit: () => Promise<void>) {
   const submissionErrors = ref<string[]>([])
