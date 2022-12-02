@@ -1,6 +1,6 @@
 import type { RequestInit } from 'node-fetch'
 import fetch, { Request } from 'node-fetch'
-import { ref } from 'vue'
+import { ref } from '@vue/reactivity'
 import type { FetchWrapperInit, FetchWrapperResponse, State, WithoutId } from './type'
 import { FetchMethods } from './type'
 
