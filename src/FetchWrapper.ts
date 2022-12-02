@@ -3,7 +3,7 @@ import fetch, { Request } from 'node-fetch'
 import type { ApiMethods, FetchWrapperInit, FetchWrapperResponse, WithoutId } from './type'
 import { FetchMethods } from './type'
 
-export default class FetchWrapper implements ApiMethods {
+export class FetchWrapper implements ApiMethods {
   private baseUrl: string
   private headers?: Headers
   private redirect?: RequestRedirect = 'follow'

@@ -1,9 +1,9 @@
 import type { ApiMethods, FetchMethods, FetchWrapperInit, HeadersInterface, State, WithoutId } from './type'
-import type { UseFetchWrapper } from './useFetchWrapper'
-import useFetchWrapper from './useFetchWrapper'
-import useSubmission from './useSubmission'
+import type { UseFetchWrapperType } from './useFetchWrapper'
+import { useFetchWrapper } from './useFetchWrapper'
+import { useSubmission } from './useSubmission'
 import type { UseSubmission } from './useSubmission'
-import FetchWrapper from './FetchWrapper'
+import { FetchWrapper } from './FetchWrapper'
 
 export type {
   State,
@@ -11,7 +11,7 @@ export type {
   HeadersInterface,
   FetchMethods,
   WithoutId,
-  UseFetchWrapper,
+  UseFetchWrapperType,
   UseSubmission,
   ApiMethods,
 }

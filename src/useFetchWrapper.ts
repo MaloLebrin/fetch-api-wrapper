@@ -4,7 +4,7 @@ import { ref } from '@vue/reactivity'
 import type { FetchWrapperInit, FetchWrapperResponse, State, WithoutId } from './type'
 import { FetchMethods } from './type'
 
-export default function useFetchWrapper(init: FetchWrapperInit) {
+export function useFetchWrapper(init: FetchWrapperInit) {
   const state: State = {
     isSubmitting: false,
     isSuccess: null,
@@ -118,4 +118,4 @@ export default function useFetchWrapper(init: FetchWrapperInit) {
   }
 }
 
-export type UseFetchWrapper = typeof useFetchWrapper
+export type UseFetchWrapperType = typeof useFetchWrapper
