@@ -36,7 +36,7 @@
     "build": "tsc --project tsconfig.production.json",
     "lint": "eslint .",
     "prepublishOnly": "nr build",
-    "release": "bumpp && npm publish",
+    "release": "bumpp && rm -rf dist/ && npm publish",
     "start": "esno src/main.ts",
     "test": "vitest",
     "typecheck": "tsc --noEmit"
