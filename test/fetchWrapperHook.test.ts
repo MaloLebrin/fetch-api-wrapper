@@ -1,7 +1,7 @@
 import { beforeAll, describe, expect, it } from 'vitest'
 import { nanoid } from 'nanoid'
 import { hasOwnProperty, noNull } from '@antfu/utils'
-import useFetchWrapper from '../src/useFetchWrapper'
+import { useFetchWrapper } from '../src/useFetchWrapper'
 import type { User } from '../utils'
 import { isArray, isObjectEmpty, isUser } from '../utils'
 
