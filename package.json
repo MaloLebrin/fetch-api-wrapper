@@ -33,7 +33,7 @@
     "dist/**/*"
   ],
   "scripts": {
-    "build": "tsc --project tsconfig.production.json",
+    "build": "rm -rf dist/ && tsc --project tsconfig.production.json",
     "lint": "eslint .",
     "prepublishOnly": "nr build",
     "release": "bumpp && rm -rf dist/ && npm publish",
