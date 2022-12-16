@@ -1,7 +1,7 @@
 {
   "name": "@malolebrin/fetch-api-wrapper",
   "type": "module",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "private": false,
   "publishConfig": {
     "access": "public"
