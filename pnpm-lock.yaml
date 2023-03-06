@@ -1,41 +1,40 @@
 lockfileVersion: 5.4
 
-importers:
+specifiers:
+  '@antfu/eslint-config': ^0.36.0
+  '@antfu/ni': ^0.20.0
+  '@antfu/utils': ^0.7.0
+  '@types/node': ^18.7.5
+  '@vue/reactivity': ^3.2.45
+  bumpp: ^9.0.0
+  eslint: ^8.22.0
+  esno: ^0.16.3
+  nanoid: ^4.0.0
+  node-fetch: ^3.2.10
+  pnpm: ^7.9.0
+  rimraf: ^4.0.0
+  typescript: ^4.7.4
+  vite: ^4.0.0
+  vitest: ^0.29.0
 
-  .:
-    specifiers:
-      '@antfu/eslint-config': ^0.36.0
-      '@antfu/ni': ^0.20.0
-      '@antfu/utils': ^0.7.0
-      '@types/node': ^18.7.5
-      '@vue/reactivity': ^3.2.45
-      bumpp: ^9.0.0
-      eslint: ^8.22.0
-      esno: ^0.16.3
-      nanoid: ^4.0.0
-      node-fetch: ^3.2.10
-      pnpm: ^7.9.0
-      rimraf: ^4.0.0
-      typescript: ^4.7.4
-      vite: ^4.0.0
-      vitest: ^0.29.0
-    dependencies:
-      '@vue/reactivity': 3.2.45
-    devDependencies:
-      '@antfu/eslint-config': 0.36.0_4rv7y5c6xz3vfxwhbrcxxi73bq
-      '@antfu/ni': 0.20.0
-      '@antfu/utils': 0.7.0
-      '@types/node': 18.7.5
-      bumpp: 9.0.0
-      eslint: 8.22.0
-      esno: 0.16.3
-      nanoid: 4.0.0
-      node-fetch: 3.2.10
-      pnpm: 7.9.0
-      rimraf: 4.0.4
-      typescript: 4.7.4
-      vite: 4.0.0_@types+node@18.7.5
-      vitest: 0.29.1
+dependencies:
+  '@vue/reactivity': 3.2.45
+
+devDependencies:
+  '@antfu/eslint-config': 0.36.0_4rv7y5c6xz3vfxwhbrcxxi73bq
+  '@antfu/ni': 0.20.0
+  '@antfu/utils': 0.7.0
+  '@types/node': 18.7.5
+  bumpp: 9.0.0
+  eslint: 8.22.0
+  esno: 0.16.3
+  nanoid: 4.0.0
+  node-fetch: 3.2.10
+  pnpm: 7.9.0
+  rimraf: 4.0.4
+  typescript: 4.7.4
+  vite: 4.0.0_@types+node@18.7.5
+  vitest: 0.29.1
 
 packages:
 
