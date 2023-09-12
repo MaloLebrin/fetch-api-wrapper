@@ -12,7 +12,7 @@ importers:
       bumpp: ^9.0.0
       eslint: ^8.22.0
       esno: ^0.16.3
-      nanoid: ^4.0.0
+      nanoid: ^5.0.0
       node-fetch: ^3.2.10
       pnpm: ^7.9.0
       rimraf: ^4.0.0
@@ -29,7 +29,7 @@ importers:
       bumpp: 9.0.0
       eslint: 8.22.0
       esno: 0.16.3
-      nanoid: 4.0.0
+      nanoid: 5.0.1
       node-fetch: 3.2.10
       pnpm: 7.9.0
       rimraf: 4.0.4
@@ -2462,9 +2462,9 @@ packages:
     hasBin: true
     dev: true
 
-  /nanoid/4.0.0:
-    resolution: {integrity: sha512-IgBP8piMxe/gf73RTQx7hmnhwz0aaEXYakvqZyE302IXW3HyVNhdNGC+O2MwMAVhLEnvXlvKtGbtJf6wvHihCg==}
-    engines: {node: ^14 || ^16 || >=18}
+  /nanoid/5.0.1:
+    resolution: {integrity: sha512-vWeVtV5Cw68aML/QaZvqN/3QQXc6fBfIieAlu05m7FZW2Dgb+3f0xc0TTxuJW+7u30t7iSDTV/j3kVI0oJqIfQ==}
+    engines: {node: ^18 || >=20}
     hasBin: true
     dev: true
 
