@@ -16,7 +16,7 @@ jobs:
       VITE_PRIMARY_TOKEN: ${{ secrets.VITE_PRIMARY_TOKEN }}
     steps:
       - name: 📚 checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 🟢 Install pnpm
         uses: pnpm/action-setup@v2
@@ -43,7 +43,7 @@ jobs:
 
     steps:
       - name: 📚 checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 🟢 Install pnpm
         uses: pnpm/action-setup@v2
@@ -76,7 +76,7 @@ jobs:
 
     steps:
       - name: 📚 checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 🟢 Install pnpm
         uses: pnpm/action-setup@v2
